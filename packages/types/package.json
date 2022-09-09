@@ -1,0 +1,34 @@
+{
+  "name": "@libra/types",
+  "version": "0.0.0",
+  "description": "Libra data models",
+  "keywords": [
+    "libra",
+    "payments",
+    "sdk"
+  ],
+  "author": "Andrew Le <andrew@atscale.xyz>",
+  "homepage": "https://github.com/atscaletech/libra-js/tree/main/packages/types#readme",
+  "license": "Apache-2.0",
+  "main": "lib/types.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atscaletech/libra-js.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/types.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/atscaletech/libra-js/issues"
+  }
+}
