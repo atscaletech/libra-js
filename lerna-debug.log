@@ -1,0 +1,15 @@
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   scope: 'react-example',
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '5.5.4',
+0 silly argv   '$0': '/Users/dungle/projects/atscaletech/libra-js/node_modules/.bin/lerna',
+0 silly argv   pkg: '@libra/ap'
+0 silly argv }
+1 notice cli v5.5.4
+2 verbose rootPath /Users/dungle/projects/atscaletech/libra-js
+3 info versioning independent
+4 error HttpErrorGeneral: 404 Not Found - GET https://registry.npmjs.org/@libra%2fap - Not found
+4 error     at /Users/dungle/projects/atscaletech/libra-js/node_modules/npm-registry-fetch/lib/check-response.js:95:15
+4 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+4 error     at async RegistryFetcher.packument (/Users/dungle/projects/atscaletech/libra-js/node_modules/pacote/lib/registry.js:92:19)

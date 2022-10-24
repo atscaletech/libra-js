@@ -16,8 +16,9 @@ const plugins = [
   ts({
     tsconfig: `${LERNA_ROOT_PATH}/tsconfig.json`,
   }),
-  resolve(),
+  resolve({ preferBuiltins: true }),
   babel({
+    babelHelpers: 'bundled',
     extensions: ['.ts', '.js', '.tsx', '.jsx'],
   }),
   commonjs(),

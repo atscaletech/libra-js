@@ -1,10 +1,6 @@
 {
   "name": "libra-js-monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "version": "0.0.0",
   "description": "Libra Javascript SDK monorepo",
   "license": "Apache-2.0",
   "author": {
@@ -22,16 +18,13 @@
   "homepage": "https://github.com/atscaletech/libra-js#readme",
   "scripts": {
     "lint": "eslint 'packages/*/lib/**/*.{ts,js}'",
+    "build": "lerna run build",
     "test": "jest",
+    "bootstrap": "lerna bootstrap",
     "create-package": "lerna create",
-    "clean": "lerna exec -- rm -rf dist/",
-    "build": "lerna exec -- rollup -c ../../rollup.config.js"
+    "add-package": "lerna add",
+    "clean": "lerna exec -- rm -rf dist/"
   },
-  "main": "dist/libra-sdk.js",
-  "module": "dist/libra-sdk.esm.js",
-  "browser:min": "dist/libra-sdk.umd.min.js",
-  "browser": "dist/libra-sdk.umd.js",
-  "types": "types/index.d.ts",
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
   },
@@ -45,6 +38,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^14.0.0",
     "@rollup/plugin-typescript": "^8.5.0",
+    "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^29.0.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.36.2",
@@ -59,7 +53,8 @@
     "rollup": "^2.79.0",
     "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.4.0",
-    "typescript": "*"
+    "typescript": "^4.8.4",
+    "nx": "^14.8.3"
   },
   "keywords": [
     "libra",
