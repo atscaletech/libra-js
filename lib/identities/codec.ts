@@ -1,12 +1,8 @@
 import {
-  CreateIdentityParams,
   DecodeFnMeta,
   Identity,
   IdentityField,
   IdentityType,
-  UpdateIdentityParams,
-  VerificationResult,
-  VerifyRequest,
   VerifyMethod,
   IdentityReview,
 } from '../types';
@@ -47,20 +43,4 @@ export function decodeIdentity(raw: IdentityCodec, meta: DecodeFnMeta): Identity
     data: raw.data.isEmpty ? [] : raw.data.toArray().map((field) => decodeIdentityField(field)),
     reviews: raw.reviews.isEmpty ? [] : raw.reviews.toArray().map((review) => decodeIdentityReview(review)),
   };
-}
-
-export function encodeCreateIdentityParams(params: CreateIdentityParams): any[] {
-  return [];
-}
-
-export function encodeUpdateIdentityParams(params: UpdateIdentityParams): any[] {
-  return [];
-}
-
-export function encodeVerifyRequest(params: VerifyRequest): any[] {
-  return [];
-}
-
-export function encodeVerificationResult(params: VerificationResult): any[] {
-  return [];
 }

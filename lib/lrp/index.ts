@@ -1,7 +1,8 @@
-import { Payment, Hash, AccountAddress, PaymentParams, TransactionEvent, Account } from '../types';
+import { Payment, Hash, AccountAddress, TransactionEvent, Account, CreatePaymentInput } from '../types';
 import { Client } from '../client';
 import { Payment as PaymentCodec } from '../codec-types';
-import { encodeParams, decodePayment } from './codec';
+import { decodePayment } from './codec';
+import { createPaymentSchema, paymentHashSchema } from './schema';
 
 export const PALLET_NAME = 'lrp';
 
@@ -44,12 +45,15 @@ export default class LrpProtocol {
     });
   }
 
-  async createPayment(params: PaymentParams, account: Account): Promise<TransactionEvent> {
+  async createPayment(data: CreatePaymentInput, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
         extrinsic: 'createPayments',
-        params: encodeParams(params),
+        params: {
+          schema: createPaymentSchema,
+          data,
+        },
       },
       account
     );
@@ -60,7 +64,10 @@ export default class LrpProtocol {
       {
         pallet: PALLET_NAME,
         extrinsic: 'acceptPayments',
-        params: [hash],
+        params: {
+          schema: paymentHashSchema,
+          data: { hash },
+        },
       },
       account
     );
@@ -71,7 +78,10 @@ export default class LrpProtocol {
       {
         pallet: PALLET_NAME,
         extrinsic: 'fulfillPayment',
-        params: [hash],
+        params: {
+          schema: paymentHashSchema,
+          data: { hash },
+        },
       },
       account
     );
@@ -82,7 +92,10 @@ export default class LrpProtocol {
       {
         pallet: PALLET_NAME,
         extrinsic: 'completePayment',
-        params: [hash],
+        params: {
+          schema: paymentHashSchema,
+          data: { hash },
+        },
       },
       account
     );
@@ -93,7 +106,10 @@ export default class LrpProtocol {
       {
         pallet: PALLET_NAME,
         extrinsic: 'cancelPayment',
-        params: [hash],
+        params: {
+          schema: paymentHashSchema,
+          data: { hash },
+        },
       },
       account
     );
@@ -104,7 +120,10 @@ export default class LrpProtocol {
       {
         pallet: PALLET_NAME,
         extrinsic: 'disputePayment',
-        params: [hash],
+        params: {
+          schema: paymentHashSchema,
+          data: { hash },
+        },
       },
       account
     );

@@ -1,4 +1,4 @@
-import { DecodeFnMeta, Payment, PaymentStatus, PaymentParams } from '../types';
+import { DecodeFnMeta, Payment, PaymentStatus } from '../types';
 import { Payment as PaymentCodec } from '../codec-types';
 
 export function decodePayment(raw: PaymentCodec, meta: DecodeFnMeta): Payment {
@@ -14,9 +14,5 @@ export function decodePayment(raw: PaymentCodec, meta: DecodeFnMeta): Payment {
     createdAt: raw.created_at.toNumber(),
     updatedAt: raw.updated_at.toNumber(),
     updatedBy: raw.updated_at.toString(),
-  }
-}
-
-export function encodeParams(params: PaymentParams): any[] {
-  return [];
+  };
 }

@@ -1,10 +1,17 @@
-import { Dispute, Hash, AccountAddress, TransactionEvent, Account } from '../types';
+import { Dispute, Hash, AccountAddress, TransactionEvent, Account, TransactionSchemaField } from '../types';
 import { Client } from '../client';
-import { Dispute as DisputeCodec } from "../codec-types";
+import { Dispute as DisputeCodec } from '../codec-types';
 import { decodeDispute } from './codec';
 
 export const PALLET_NAME = 'dispute-resolution';
 
+const schema: TransactionSchemaField[] = [
+  {
+    name: 'hash',
+    isRequired: true,
+    chainType: 'Hash',
+  },
+];
 export default class DisputeResolution {
   readonly client: Client;
 
@@ -34,7 +41,6 @@ export default class DisputeResolution {
   getPaymentsByPayer(payer: AccountAddress): Promise<Dispute[]> {
     return this.getDisputesBy(PALLET_NAME, 'disputesByPayer', payer);
   }
-  
 
   getDispute(paymentHash: Hash): Promise<Dispute | null> {
     return this.client.getByKey({
@@ -45,12 +51,29 @@ export default class DisputeResolution {
     });
   }
 
+  disputePayment(hash: string, account: Account) {
+    return this.client.submitTransaction(
+      {
+        pallet: PALLET_NAME,
+        extrinsic: 'disputePayment',
+        params: {
+          schema,
+          data: { hash },
+        },
+      },
+      account
+    );
+  }
+
   fightDispute(hash: string, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
         extrinsic: 'fightDispute',
-        params: [hash],
+        params: {
+          schema,
+          data: { hash },
+        },
       },
       account
     );
@@ -61,7 +84,10 @@ export default class DisputeResolution {
       {
         pallet: PALLET_NAME,
         extrinsic: 'escalate',
-        params: [hash],
+        params: {
+          schema,
+          data: { hash },
+        },
       },
       account
     );
@@ -72,18 +98,10 @@ export default class DisputeResolution {
       {
         pallet: PALLET_NAME,
         extrinsic: 'proposeOutcome',
-        params: [hash],
-      },
-      account
-    );
-  }
-
-  disputePayment(hash: string, account: Account) {
-    return this.client.submitTransaction(
-      {
-        pallet: PALLET_NAME,
-        extrinsic: 'disputePayment',
-        params: [hash],
+        params: {
+          schema,
+          data: { hash },
+        },
       },
       account
     );

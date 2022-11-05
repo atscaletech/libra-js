@@ -16,10 +16,7 @@ import {
 } from './types';
 import { lastValueFrom, filter, map } from 'rxjs';
 import { isFunction } from '@polkadot/util';
-import { getQueryKeys, decodeKeys } from './utils/query';
-
-export const DEFAULT_LIMIT = 50;
-export const DEFAULT_OFFSET = 0;
+import { getQueryKeys, decodeKeys, encodeParams } from './utils';
 
 let clients: Record<string, ApiRx>;
 
@@ -46,7 +43,8 @@ export class Client {
     if (!this.connection.tx[pallet][extrinsic]) {
       throw new Error('There is no extrinsic `${extrinsic}` in pallet ${pallet}.');
     }
-    return this.connection.tx[pallet][extrinsic](...params);
+    const encoded = encodeParams(this.connection.registry, params);
+    return this.connection.tx[pallet][extrinsic](...encoded);
   }
 
   estimateFee(config: TransactionConfig, account: Account): Promise<any> {
@@ -83,9 +81,7 @@ export class Client {
 
     if (isFunction(this.connection.query[pallet][getter])) {
       return lastValueFrom(
-        this.connection.query[pallet][getter]<C>(...params).pipe(
-          map((value) => decoder(value, { params: params }))
-        )
+        this.connection.query[pallet][getter]<C>(...params).pipe(map((value) => decoder(value, { params: params })))
       );
     }
 
@@ -98,9 +94,7 @@ export class Client {
 
     if (isFunction(this.connection.query[pallet][getter])) {
       return lastValueFrom(
-        this.connection.query[pallet][getter]<C>(key).pipe(
-          map((value) => decoder(value, { key: key }))
-        )
+        this.connection.query[pallet][getter]<C>(key).pipe(map((value) => decoder(value, { key: key })))
       );
     }
 

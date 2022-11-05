@@ -1,7 +1,8 @@
 import { Currency, AccountAddress, TransactionEvent, Account, CurrencyParams, Hash } from '../types';
 import { Client } from '../client';
-import { encodeCurrencyParams, decodeCurrency } from './codec';
+import { decodeCurrency } from './codec';
 import { CurrencyMetadata } from '../codec-types';
+import { createCurrencySchema, acceptCurrencySchema } from './schema';
 
 export const PALLET_NAME = 'currencies';
 
@@ -27,12 +28,15 @@ export default class Resolvers {
     });
   }
 
-  createCurrency(params: CurrencyParams, account: Account): Promise<TransactionEvent> {
+  createCurrency(data: CurrencyParams, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
         extrinsic: 'createCurrency',
-        params: encodeCurrencyParams(params),
+        params: {
+          schema: createCurrencySchema,
+          data,
+        },
       },
       account
     );
@@ -43,7 +47,10 @@ export default class Resolvers {
       {
         pallet: PALLET_NAME,
         extrinsic: 'acceptCurrency',
-        params: [hash],
+        params: {
+          schema: acceptCurrencySchema,
+          data: { hash },
+        },
       },
       account
     );

@@ -3,19 +3,16 @@ import {
   TransactionEvent,
   Account,
   Identity,
-  CreateIdentityParams,
-  UpdateIdentityParams,
+  CreateIdentityInput,
+  UpdateIdentityInput,
   VerifyRequest,
   VerificationResult,
 } from '../types';
 import { Client } from '../client';
 import {
   decodeIdentity,
-  encodeCreateIdentityParams,
-  encodeUpdateIdentityParams,
-  encodeVerifyRequest,
-  encodeVerificationResult,
 } from './codec';
+import { createIdentitySchema, updateIdentitySchema, verifyRequestSchema, verificationResultSchema } from './schema';
 
 export const PALLET_NAME = 'identities';
 
@@ -35,23 +32,29 @@ export default class Identities {
     });
   }
 
-  async createIdentity(params: CreateIdentityParams, account: Account): Promise<TransactionEvent> {
+  async createIdentity(data: CreateIdentityInput, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
         extrinsic: 'createIdentity',
-        params: encodeCreateIdentityParams(params),
+        params: {
+          schema: createIdentitySchema,
+          data: data,
+        },
       },
       account
     );
   }
 
-  async updateIdentity(params: UpdateIdentityParams, account: Account): Promise<TransactionEvent> {
+  async updateIdentity(data: UpdateIdentityInput, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
         extrinsic: 'updateIdentity',
-        params: encodeUpdateIdentityParams(params),
+        params: {
+          schema: updateIdentitySchema,
+          data,
+        },
       },
       account
     );
@@ -62,29 +65,38 @@ export default class Identities {
       {
         pallet: PALLET_NAME,
         extrinsic: 'deleteIdentity',
-        params: [],
+        params: {
+          schema: [],
+          data: {},
+        },
       },
       account
     );
   }
 
-  async requestToVerifyData(params: VerifyRequest, account: Account): Promise<TransactionEvent> {
+  async requestToVerifyData(data: VerifyRequest, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
         extrinsic: 'requestToVerify',
-        params: encodeVerifyRequest(params),
+        params: {
+          schema: verifyRequestSchema,
+          data,
+        },
       },
       account
     );
   }
 
-  async verifyData(params: VerificationResult, account: Account): Promise<TransactionEvent> {
+  async verifyData(data: VerificationResult, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
         extrinsic: 'verifyData',
-        params: encodeVerificationResult(params),
+        params: {
+          schema: verificationResultSchema,
+          data, 
+        },
       },
       account
     );

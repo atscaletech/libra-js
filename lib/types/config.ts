@@ -59,8 +59,18 @@ export interface QueryByKeysFromConfig<C, T> extends QueryBaseConfig<C, T> {
   };
 }
 
+export interface TransactionSchemaField {
+  name: string;
+  isRequired: true;
+  chainType: string;
+}
+
+export type TransactionParams = {
+  schema: TransactionSchemaField[];
+  data:  Record<string, any>;
+}
 export interface TransactionConfig {
   pallet: string;
   extrinsic: string;
-  params: any[];
+  params: TransactionParams;
 }

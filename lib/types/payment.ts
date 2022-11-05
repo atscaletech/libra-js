@@ -24,9 +24,10 @@ export interface Payment {
   updatedBy: AccountAddress;
 }
 
-export interface PaymentParams {
+export interface CreatePaymentInput {
   payee: AccountAddress;
   amount: Balance;
   currencyId: string;
-  receiptHash: string;
+  description: string;
+  receipt: string;
 }

@@ -1,6 +1,4 @@
 import { QueryMultiParams } from '../types';
-import { Vec } from '@polkadot/types/codec';
-import { Text } from '@polkadot/types/primitive';
 
 const DEFAULT_LIMIT = 50;
 const DEFAULT_OFFSET = 0;
@@ -19,8 +17,4 @@ export function getQueryKeys({ keys, limit = DEFAULT_LIMIT, offset = DEFAULT_OFF
   }
 
   return keys.slice(offset, offset + limit);
-}
-
-export function decodeKeys(raw: Vec<Text>): string[] {
-  return raw.isEmpty ? [] : (raw.toJSON() as string[]);
 }
