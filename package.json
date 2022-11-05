@@ -1,7 +1,7 @@
 {
-  "name": "libra-js-monorepo",
+  "name": "libra-js",
   "private": true,
-  "description": "Libra Javascript SDK monorepo",
+  "description": "Libra Javascript SDK",
   "license": "Apache-2.0",
   "author": {
     "name": "AtScale Technologies",
@@ -17,13 +17,11 @@
   },
   "homepage": "https://github.com/atscaletech/libra-js#readme",
   "scripts": {
-    "lint": "eslint 'packages/*/lib/**/*.{ts,js}'",
-    "build": "lerna run build",
+    "lint": "eslint 'lib/**/*.{ts,js}'",
+    "build:dev": "rollup -c -m -w",
+    "build": "rollup -c -m",
     "test": "jest",
-    "bootstrap": "lerna bootstrap",
-    "create-package": "lerna create",
-    "add-package": "lerna add",
-    "clean": "lerna exec -- rm -rf dist/"
+    "clean": "rm -rf dist/"
   },
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
