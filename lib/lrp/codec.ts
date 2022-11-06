@@ -11,8 +11,8 @@ export function decodePayment(raw: PaymentCodec, meta: DecodeFnMeta): Payment {
     // TO DO: find the way to parse enum.
     status: PaymentStatus.Pending,
     receiptHash: raw.receipt_hash.toString(),
-    createdAt: raw.created_at.toNumber(),
-    updatedAt: raw.updated_at.toNumber(),
+    createdAt: raw.created_at.toBigInt(),
+    updatedAt: raw.updated_at.toBigInt(),
     updatedBy: raw.updated_at.toString(),
   };
 }

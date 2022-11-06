@@ -18,6 +18,6 @@ export function decodeResolver(raw: ResolverCodec, meta: DecodeFnMeta): Resolver
     selfStake: raw.self_stake.toString(),
     delegations: raw.delegations.toArray().map((item) => decodeDelegation(item)),
     totalStake: raw.total_stake.toString(),
-    updatedAt: raw.updated_at.toNumber(),
+    updatedAt: raw.updated_at.toBigInt(),
   };
 }

@@ -1,4 +1,4 @@
-import type { AccountAddress, Balance, Hash } from './common';
+import type { AccountAddress, Balance, Hash, Timestamp } from './common';
 
 export enum PaymentStatus {
   Pending,
@@ -19,8 +19,8 @@ export interface Payment {
   currencyId: string;
   status: PaymentStatus;
   receiptHash: Hash;
-  createdAt: number;
-  updatedAt: number;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
   updatedBy: AccountAddress;
 }
 

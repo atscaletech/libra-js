@@ -39,7 +39,7 @@ export function decodeIdentity(raw: IdentityCodec, meta: DecodeFnMeta): Identity
     address: meta.key || '',
     name: raw.name.toString(),
     type: IdentityType.Individual,
-    credibility: raw.credibility.toNumber(),
+    credibility: raw.credibility.toBigInt(),
     data: raw.data.isEmpty ? [] : raw.data.toArray().map((field) => decodeIdentityField(field)),
     reviews: raw.reviews.isEmpty ? [] : raw.reviews.toArray().map((review) => decodeIdentityReview(review)),
   };

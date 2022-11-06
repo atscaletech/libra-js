@@ -1,9 +1,9 @@
-import { AccountAddress } from "./common";
+import { AccountAddress } from './common';
 
 export interface Currency {
   hash: string;
   name: string;
-  decimals: number;
+  decimals: bigint;
   symbol: string;
   issuer: AccountAddress;
 }

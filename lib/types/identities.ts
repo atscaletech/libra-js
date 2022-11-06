@@ -27,7 +27,7 @@ export interface Identity {
   address: AccountAddress;
   name: string;
   type: IdentityType;
-  credibility: number;
+  credibility: bigint;
   data: IdentityField[];
   reviews: IdentityReview[];
 }
