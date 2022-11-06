@@ -9,9 +9,7 @@ import {
   VerificationResult,
 } from '../types';
 import { Client } from '../client';
-import {
-  decodeIdentity,
-} from './codec';
+import { decodeIdentity } from './codec';
 import { createIdentitySchema, updateIdentitySchema, verifyRequestSchema, verificationResultSchema } from './schema';
 
 export const PALLET_NAME = 'identities';
@@ -95,7 +93,7 @@ export default class Identities {
         extrinsic: 'verifyData',
         params: {
           schema: verificationResultSchema,
-          data, 
+          data,
         },
       },
       account

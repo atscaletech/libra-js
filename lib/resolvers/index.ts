@@ -1,6 +1,6 @@
 import { Resolver, AccountAddress, TransactionEvent, Account, ResolverParams, DelegationParams } from '../types';
 import { Client } from '../client';
-import { decodeResolver, encodeDelegationParams, encodeResolverParams } from './codec';
+import { decodeResolver } from './codec';
 import { delegateSchema, joinResolverSchema } from './schema';
 
 export const PALLET_NAME = 'resolvers';

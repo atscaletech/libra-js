@@ -1,4 +1,4 @@
-import { DecodeFnMeta, DelegationParams, Resolver, Delegation, ResolverParams, ResolverStatus } from '../types';
+import { DecodeFnMeta, Resolver, Delegation, ResolverStatus } from '../types';
 import { Resolver as ResolverCodec, Delegation as DelegationCodec } from '../codec-types';
 
 function decodeDelegation(raw: DelegationCodec): Delegation {
@@ -20,12 +20,4 @@ export function decodeResolver(raw: ResolverCodec, meta: DecodeFnMeta): Resolver
     totalStake: raw.total_stake.toString(),
     updatedAt: raw.updated_at.toNumber(),
   };
-}
-
-export function encodeResolverParams(params: ResolverParams): any[] {
-  return [];
-}
-
-export function encodeDelegationParams(params: DelegationParams): any[] {
-  return [];
 }

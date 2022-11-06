@@ -1,7 +1,7 @@
-import { DecodeFnMeta, Dispute, DisputeStatus, DisputeJudgment } from "../types";
+import { Dispute, DisputeStatus, DisputeJudgment } from "../types";
 import { Dispute as DisputeCodec } from "../codec-types";
 
-export function decodeDispute(raw: DisputeCodec, meta: DecodeFnMeta): Dispute {
+export function decodeDispute(raw: DisputeCodec): Dispute {
   return {
     paymentHash: raw.payment_hash.toString(),
     status: DisputeStatus.Evaluating,
