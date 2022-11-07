@@ -1,15 +1,10 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
   },
   plugins: ['@typescript-eslint'],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   overrides: [],
-  rules: {}
-}
+  rules: {},
+};
