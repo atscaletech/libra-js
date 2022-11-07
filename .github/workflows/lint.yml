@@ -23,9 +23,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: npm install
+      - name: Install packages
         run: |
-          npm install
-      - name: yarn lint
+          yarn install
+      - name: Run linter
         run: |
           yarn lint
