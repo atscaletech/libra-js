@@ -32,13 +32,13 @@ export interface Identity {
   reviews: IdentityReview[];
 }
 
-export interface CreateIdentityInput{
+export interface CreateIdentityInput {
   name: string;
   type: IdentityType;
   data: IdentityField[];
 }
 
-export interface UpdateIdentityInput{
+export interface UpdateIdentityInput {
   name?: string;
   data?: IdentityField[];
 }

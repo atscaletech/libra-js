@@ -24,4 +24,4 @@ export const acceptCurrencySchema: TransactionSchemaField[] = [
     isRequired: true,
     chainType: 'Hash',
   },
-]
+];

@@ -17,6 +17,7 @@ import {
 import { lastValueFrom, filter, map } from 'rxjs';
 import { isFunction } from '@polkadot/util';
 import { getQueryKeys, decodeKeys, encodeParams } from './utils';
+import { SubmittableExtrinsic } from '@polkadot/api/types';
 
 let clients: Record<string, ApiRx>;
 
@@ -39,9 +40,9 @@ export class Client {
     this.connection = createConnection(config.rpc);
   }
 
-  buildTransaction({ pallet, extrinsic, params }: TransactionConfig) {
+  buildTransaction({ pallet, extrinsic, params }: TransactionConfig): SubmittableExtrinsic<'rxjs', ISubmittableResult> {
     if (!this.connection.tx[pallet][extrinsic]) {
-      throw new Error('There is no extrinsic `${extrinsic}` in pallet ${pallet}.');
+      throw new Error(`There is no extrinsic ${extrinsic} in pallet ${pallet}.`);
     }
     const encoded = encodeParams(this.connection.registry, params);
     return this.connection.tx[pallet][extrinsic](...encoded);

@@ -8,5 +8,5 @@ export function decodeCurrency(raw: CurrencyMetadata, meta: DecodeFnMeta): Curre
     symbol: raw.symbol.toString(),
     decimals: raw.decimals.toBigInt(),
     issuer: raw.decimals.toString(),
-  }
+  };
 }

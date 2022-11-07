@@ -67,8 +67,8 @@ export interface TransactionSchemaField {
 
 export type TransactionParams = {
   schema: TransactionSchemaField[];
-  data:  Record<string, any>;
-}
+  data: Record<string, any>;
+};
 export interface TransactionConfig {
   pallet: string;
   extrinsic: string;

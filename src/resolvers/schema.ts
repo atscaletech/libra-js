@@ -25,4 +25,3 @@ export const delegateSchema: TransactionSchemaField[] = [
     chainType: 'Balance',
   },
 ];
-

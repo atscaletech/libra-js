@@ -16,7 +16,7 @@ export interface Resolver extends Struct {
   readonly application_digest: Hash;
   readonly status: ResolverStatus;
   readonly self_stake: Balance;
-  readonly delegations: Vec<Delegation>,
-  readonly total_stake: Balance,
-  readonly updated_at: Moment,
+  readonly delegations: Vec<Delegation>;
+  readonly total_stake: Balance;
+  readonly updated_at: Moment;
 }

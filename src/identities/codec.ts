@@ -1,11 +1,4 @@
-import {
-  DecodeFnMeta,
-  Identity,
-  IdentityField,
-  IdentityType,
-  VerifyMethod,
-  IdentityReview,
-} from '../types';
+import { DecodeFnMeta, Identity, IdentityField, IdentityType, VerifyMethod, IdentityReview } from '../types';
 import {
   Identity as IdentityCodec,
   IdentityField as IdentityFieldCodec,

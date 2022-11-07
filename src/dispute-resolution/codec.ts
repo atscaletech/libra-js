@@ -1,5 +1,5 @@
-import { Dispute, DisputeStatus, DisputeJudgment } from "../types";
-import { Dispute as DisputeCodec } from "../codec-types";
+import { Dispute, DisputeStatus, DisputeJudgment } from '../types';
+import { Dispute as DisputeCodec } from '../codec-types';
 
 export function decodeDispute(raw: DisputeCodec): Dispute {
   return {
@@ -11,5 +11,5 @@ export function decodeDispute(raw: DisputeCodec): Dispute {
     fee: raw.fee.toString(),
     judgments: [],
     outcome: DisputeJudgment.ReleaseFundToPayee,
-  }
+  };
 }

@@ -15,11 +15,11 @@ export interface VerifyMethod extends Enum {
 }
 
 export interface IdentityField extends Struct {
-  readonly name: Vec<u8>,
-  readonly value: Vec<u8>,
-  readonly verify_method: VerifyMethod,
-  readonly is_verified: bool,
-  readonly verify_by: Option<AccountId>,
+  readonly name: Vec<u8>;
+  readonly value: Vec<u8>;
+  readonly verify_method: VerifyMethod;
+  readonly is_verified: bool;
+  readonly verify_by: Option<AccountId>;
 }
 
 export interface IdentityReview extends Struct {

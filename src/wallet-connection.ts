@@ -11,11 +11,11 @@ export class WalletConnection {
     this.isReady = false;
   }
 
-  async init(appName: string) {
+  async init(appName: string): Promise<WalletConnection> {
     try {
       const extensions = await web3Enable(appName);
       return new WalletConnection(extensions);
-    } catch(_) {
+    } catch (_) {
       throw new Error('Extensions not found.');
     }
   }
@@ -24,7 +24,7 @@ export class WalletConnection {
     return this.extensions;
   }
 
-  getExtension(extensionName: string) {
+  getExtension(extensionName: string): InjectedExtension {
     const extension = this.extensions.find((item) => item.name === extensionName);
 
     if (extension) {

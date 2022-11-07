@@ -1,4 +1,4 @@
-import { Signer } from "@polkadot/api/types";
+import { Signer } from '@polkadot/api/types';
 
 export type AccountAddress = string;
 export type Balance = string;

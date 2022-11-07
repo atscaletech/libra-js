@@ -33,5 +33,5 @@ export const paymentHashSchema: TransactionSchemaField[] = [
     name: 'hash',
     isRequired: true,
     chainType: 'Hash',
-  }
-]
+  },
+];

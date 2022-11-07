@@ -1,4 +1,4 @@
-import { AccountAddress, Balance, Timestamp } from './common'
+import { AccountAddress, Balance, Timestamp } from './common';
 
 export enum DisputeStatus {
   Finalizing,
