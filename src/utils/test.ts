@@ -17,27 +17,29 @@ export class SingleAccountSigner implements Signer {
 
   readonly signDelay: number;
 
-  constructor (registry: Registry, keyringPair: KeyringPair, signDelay = 0) {
+  constructor(registry: Registry, keyringPair: KeyringPair, signDelay = 0) {
     this.keyringPair = keyringPair;
     this.registry = registry;
     this.signDelay = signDelay;
   }
 
-  public async signPayload (payload: SignerPayloadJSON): Promise<SignerResult> {
+  public async signPayload(payload: SignerPayloadJSON): Promise<SignerResult> {
     if (payload.address !== this.keyringPair.address) {
       throw new Error('Signer does not have the keyringPair');
     }
 
     return new Promise((resolve): void => {
       setTimeout((): void => {
-        const signed = this.registry.createType('ExtrinsicPayload', payload, { version: payload.version }).sign(this.keyringPair);
+        const signed = this.registry
+          .createType('ExtrinsicPayload', payload, { version: payload.version })
+          .sign(this.keyringPair);
 
         resolve(objectSpread({ id: ++id }, signed));
       }, this.signDelay);
     });
   }
 
-  public async signRaw ({ address, data }: SignerPayloadRaw): Promise<SignerResult> {
+  public async signRaw({ address, data }: SignerPayloadRaw): Promise<SignerResult> {
     if (address !== this.keyringPair.address) {
       throw new Error('Signer does not have the keyringPair');
     }
@@ -48,7 +50,7 @@ export class SingleAccountSigner implements Signer {
 
         resolve({
           id: ++id,
-          signature
+          signature,
         });
       }, this.signDelay);
     });

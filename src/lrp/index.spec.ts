@@ -11,7 +11,7 @@ jest.mock('../client', () => {
     ...originalModule,
     Client: jest.fn(() => ({
       submitTransaction: async () => ({ status: TransactionStatus.Processing, hash: 'hash' }),
-      getByKey: async () => {},
+      getByKey: async () => ({}),
     })),
   };
 });

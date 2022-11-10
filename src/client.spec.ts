@@ -41,7 +41,7 @@ jest.mock('@polkadot/api', () => {
 
       return {
         registry,
-        setSigner: () => {},
+        setSigner: () => ({}),
         tx: {
           balances: balancesExtrinsic,
         },
