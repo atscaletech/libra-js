@@ -36,8 +36,13 @@ function createConnection(rpc: string): ApiRx {
 export class Client {
   connection: ApiRx;
 
-  constructor(config: ClientConfig) {
-    this.connection = createConnection(config.rpc);
+  constructor(connection: ApiRx) {
+    this.connection = connection;
+  }
+
+  static connect(config: ClientConfig): Client {
+    const connection = createConnection(config.rpc);
+    return new Client(connection);
   }
 
   buildTransaction({ pallet, extrinsic, params }: TransactionConfig): SubmittableExtrinsic<'rxjs', ISubmittableResult> {

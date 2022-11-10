@@ -8,7 +8,7 @@ export function encodeParams(registry: Registry, { schema, data }: TransactionPa
     if (field.isRequired && !data[field.name]) {
       throw new Error(`Field ${field.name} is required.`);
     }
-    encoded.push(registry.createType(field.chainType, ...data[field.name]));
+    encoded.push(registry.createType(field.chainType, data[field.name]));
   });
 
   return encoded;

@@ -16,7 +16,7 @@ export class Libra {
   readonly resolvers: Resolvers;
 
   constructor(config: LibraConfig) {
-    const client = new Client(config);
+    const client = Client.connect(config);
     this.walletConnection = new WalletConnection([]);
     this.lrp = new LrpProtocol(client);
     this.ddr = new DisputeResolution(client);
