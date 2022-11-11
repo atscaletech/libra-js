@@ -130,12 +130,18 @@ describe('Encode params for transactions', (): void => {
       expect(payment.hash).toEqual(SAMPLE_HASH);
       expect(payment.payer).toEqual(SAMPLE_ADDRESS_1);
       expect(payment.payee).toEqual(SAMPLE_ADDRESS_2);
-      expect(payment.amount).toEqual('10000');
-      expect(payment.currencyId).toEqual('Libra');
-      expect(payment.status).toEqual(PaymentStatus.Pending);
-      expect(payment.createdAt).toEqual('10000');
-      expect(payment.updatedAt).toEqual('10000');
-      expect(payment.updatedBy).toEqual(SAMPLE_ADDRESS_1);
+    });
+  });
+
+  it('should return correct value when get payment by payee', async () => {
+    const payments = await lrp.getPaymentsByPayee(SAMPLE_ADDRESS_1);
+
+    expect(payments.length).toEqual(3);
+
+    payments.forEach((payment) => {
+      expect(payment.hash).toEqual(SAMPLE_HASH);
+      expect(payment.payer).toEqual(SAMPLE_ADDRESS_1);
+      expect(payment.payee).toEqual(SAMPLE_ADDRESS_2);
     });
   });
 

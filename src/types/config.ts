@@ -61,7 +61,7 @@ export interface QueryByKeysFromConfig<C, T> extends QueryBaseConfig<C, T> {
 
 export interface TransactionSchemaField {
   name: string;
-  isRequired: true;
+  isRequired: boolean;
   chainType: string;
 }
 
