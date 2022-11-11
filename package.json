@@ -19,7 +19,7 @@
   "scripts": {
     "lint": "tsdx lint src",
     "fix:lint": "tsdx lint src --fix",
-    "test": "tsdx test",
+    "test": "tsdx test src/lrp",
     "test:coverage": "tsdx test --coverage",
     "dev": "tsdx watch",
     "build": "tsdx build",
