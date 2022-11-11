@@ -169,7 +169,7 @@ describe('Encode params for transactions', (): void => {
   });
 
   it('should return transaction result when reject a payment', async () => {
-    const result = await lrp.acceptPayment(SAMPLE_HASH, account);
+    const result = await lrp.rejectPayment(SAMPLE_HASH, account);
 
     expect(result.status).toEqual(TransactionStatus.Processing);
     expect(result.hash).toEqual(SAMPLE_HASH);
