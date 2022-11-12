@@ -3,7 +3,7 @@ import { Client } from '../client';
 import { Dispute as DisputeCodec } from '../codec-types';
 import { decodeDispute } from './codec';
 
-export const PALLET_NAME = 'dispute-resolution';
+export const PALLET_NAME = 'disputes';
 
 const schema: TransactionSchemaField[] = [
   {
@@ -31,7 +31,7 @@ export default class DisputeResolution {
   }
 
   getPaymentsByResolver(resolver: AccountAddress): Promise<Dispute[]> {
-    return this.getDisputesBy(PALLET_NAME, 'assignedDisputes', resolver);
+    return this.getDisputesBy(PALLET_NAME, 'disputesByResolvers', resolver);
   }
 
   getPaymentsByPayee(payee: AccountAddress): Promise<Dispute[]> {
@@ -51,11 +51,11 @@ export default class DisputeResolution {
     });
   }
 
-  disputePayment(hash: string, account: Account) {
+  dispute(hash: string, account: Account) {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
-        extrinsic: 'disputePayment',
+        extrinsic: 'createDispute',
         params: {
           schema,
           data: { hash },
@@ -65,7 +65,7 @@ export default class DisputeResolution {
     );
   }
 
-  fightDispute(hash: string, account: Account): Promise<TransactionEvent> {
+  fight(hash: string, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
@@ -79,11 +79,11 @@ export default class DisputeResolution {
     );
   }
 
-  escalateDispute(hash: string, account: Account): Promise<TransactionEvent> {
+  escalate(hash: string, account: Account): Promise<TransactionEvent> {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
-        extrinsic: 'escalate',
+        extrinsic: 'escalateDispute',
         params: {
           schema,
           data: { hash },

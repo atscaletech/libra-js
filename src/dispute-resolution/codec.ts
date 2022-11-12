@@ -10,6 +10,6 @@ export function decodeDispute(raw: DisputeCodec): Dispute {
     resolvers: [],
     fee: raw.fee.toString(),
     judgments: [],
-    outcome: DisputeJudgment.ReleaseFundToPayee,
+    outcome: raw.outcome.isReleaseFundToPayer ? DisputeJudgment.ReleaseFundToPayer : DisputeJudgment.ReleaseFundToPayee,
   };
 }

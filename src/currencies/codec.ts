@@ -6,7 +6,7 @@ export function decodeCurrency(raw: CurrencyMetadata, meta: DecodeFnMeta): Curre
     hash: meta.key || '',
     name: raw.name.toString(),
     symbol: raw.symbol.toString(),
-    decimals: raw.decimals.toBigInt(),
-    issuer: raw.decimals.toString(),
+    decimals: Number.parseInt(raw.decimals.toString()),
+    issuer: raw.issuer.toString(),
   };
 }
