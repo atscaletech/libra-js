@@ -88,6 +88,7 @@ jest.mock('@polkadot/api', () => {
             disputes: disputesQuery,
             disputesByPayer: () => of(hashesCodec),
             disputesByPayee: () => of(hashesCodec),
+            disputesByResolver: () => of(hashesCodec),
           },
         },
       };
@@ -148,7 +149,7 @@ describe('Encode params for transactions', (): void => {
   });
 
   it('should return correct value when get disputes by resolver', async () => {
-    const disputes = await ddr.getPaymentsByPayee(SAMPLE_ADDRESS_2);
+    const disputes = await ddr.getPaymentsByResolver(SAMPLE_ADDRESS_2);
 
     expect(disputes.length).toEqual(3);
 
@@ -177,7 +178,7 @@ describe('Encode params for transactions', (): void => {
   });
 
   it('should return transaction result when escalate a dispute', async () => {
-    const result = await ddr.fight(SAMPLE_HASH, account);
+    const result = await ddr.escalate(SAMPLE_HASH, account);
 
     expect(result.status).toEqual(TransactionStatus.Processing);
     expect(result.hash).toEqual(SAMPLE_HASH);

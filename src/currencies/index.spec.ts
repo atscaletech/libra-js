@@ -3,6 +3,7 @@ import { Client } from '../client';
 import Currencies from '.';
 import { Account, TransactionStatus } from '../types';
 import { TypeRegistry } from '@polkadot/types/create';
+import { KNOWN_TYPES } from '../codec-types';
 import { of } from 'rxjs';
 
 const SAMPLE_HASH = '0x88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee';
@@ -33,23 +34,7 @@ jest.mock('@polkadot/api', () => {
       };
 
       const registry = new TypeRegistry();
-
-      const registeredTypes = {
-        CurrencyId: {
-          _enum: {
-            Native: null,
-            Registered: 'Hash',
-          },
-        },
-        CurrencyMetadata: {
-          name: 'Text',
-          symbol: 'Text',
-          decimals: 'u8',
-          issuer: 'AccountId',
-        },
-      };
-
-      registry.register(registeredTypes);
+      registry.register(KNOWN_TYPES);
 
       const currencyMetadataCodec = registry.createType('CurrencyMetadata', {
         name: 'Test Currency',

@@ -31,7 +31,7 @@ export default class DisputeResolution {
   }
 
   getPaymentsByResolver(resolver: AccountAddress): Promise<Dispute[]> {
-    return this.getDisputesBy(PALLET_NAME, 'disputesByResolvers', resolver);
+    return this.getDisputesBy(PALLET_NAME, 'disputesByResolver', resolver);
   }
 
   getPaymentsByPayee(payee: AccountAddress): Promise<Dispute[]> {

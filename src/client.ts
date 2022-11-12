@@ -3,6 +3,7 @@ import jsonrpc from '@polkadot/types/interfaces/jsonrpc';
 import { ISubmittableResult, Codec } from '@polkadot/types/types';
 import { Vec } from '@polkadot/types/codec';
 import { Text } from '@polkadot/types/primitive';
+import { KNOWN_TYPES } from './codec-types';
 import {
   ClientConfig,
   TransactionConfig,
@@ -21,12 +22,13 @@ import { SubmittableExtrinsic } from '@polkadot/api/types';
 
 let clients: Record<string, ApiRx>;
 
-function createConnection(rpc: string): ApiRx {
+export function createConnection(rpc: string): ApiRx {
   if (!clients[rpc]) {
     const provider = new WsProvider(rpc);
     clients[rpc] = new ApiRx({
       provider,
       rpc: jsonrpc,
+      types: KNOWN_TYPES,
     });
   }
 

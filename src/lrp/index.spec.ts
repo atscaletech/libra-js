@@ -3,6 +3,7 @@ import { Client } from '../client';
 import LrpProtocol from '.';
 import { Account, PaymentStatus, TransactionStatus } from '../types';
 import { TypeRegistry } from '@polkadot/types/create';
+import { KNOWN_TYPES } from '../codec-types';
 import { of } from 'rxjs';
 
 const SAMPLE_HASH = '0x88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee';
@@ -38,33 +39,13 @@ jest.mock('@polkadot/api', () => {
       };
 
       const registry = new TypeRegistry();
-
-      const registeredTypes = {
-        PaymentStatus: {
-          _enum: ['Pending', 'Accepted', 'Rejected', 'Expired', 'Fulfilled', 'Disputed', 'Cancelled', 'Completed'],
-        },
-        Payment: {
-          payer: 'Text',
-          payee: 'Text',
-          amount: 'Balance',
-          currency_id: 'Text',
-          description: 'Text',
-          status: 'PaymentStatus',
-          receipt_hash: 'Hash',
-          created_at: 'Moment',
-          updated_at: 'Moment',
-          updated_by: 'Text',
-        },
-        CurrencyId: 'Text',
-      };
-
-      registry.register(registeredTypes);
+      registry.register(KNOWN_TYPES);
 
       const paymentCodec = registry.createType('Payment', {
         payer: SAMPLE_ADDRESS_1,
         payee: SAMPLE_ADDRESS_2,
         amount: '10000',
-        currency_id: 'Libra',
+        currency_id: 'Native',
         description: 'This is description',
         status: 'Pending',
         receipt_hash: SAMPLE_HASH,
@@ -113,7 +94,7 @@ describe('Encode params for transactions', (): void => {
       expect(payment.payer).toEqual(SAMPLE_ADDRESS_1);
       expect(payment.payee).toEqual(SAMPLE_ADDRESS_2);
       expect(payment.amount).toEqual('10000');
-      expect(payment.currencyId).toEqual('Libra');
+      expect(payment.currencyId).toEqual('Native');
       expect(payment.status).toEqual(PaymentStatus.Pending);
       expect(payment.createdAt).toEqual('10000');
       expect(payment.updatedAt).toEqual('10000');
@@ -150,7 +131,7 @@ describe('Encode params for transactions', (): void => {
       {
         payee: SAMPLE_ADDRESS_2,
         amount: '10000',
-        currencyId: 'libra',
+        currencyId: 'Native',
         description: 'description',
         receipt: 'receipt',
       },

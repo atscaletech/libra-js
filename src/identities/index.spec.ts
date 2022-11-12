@@ -3,6 +3,7 @@ import { Client } from '../client';
 import Identities from '.';
 import { Account, IdentityType, TransactionStatus } from '../types';
 import { TypeRegistry } from '@polkadot/types/create';
+import { KNOWN_TYPES } from '../codec-types';
 import { of } from 'rxjs';
 
 const SAMPLE_HASH = '0x88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee';
@@ -36,40 +37,7 @@ jest.mock('@polkadot/api', () => {
       };
 
       const registry = new TypeRegistry();
-
-      const registeredTypes = {
-        IdentityType: {
-          _enum: ['Individual', 'Organization'],
-        },
-        IdentityField: {
-          name: 'Text',
-          value: 'Text',
-          is_verified: 'bool',
-          verify_by: 'Option<AccountId>',
-        },
-        IdentityReview: {
-          reviewer: 'AccountId',
-          digest: 'Hash',
-        },
-        Identity: {
-          name: 'Text',
-          identity_type: 'IdentityType',
-          credibility: 'u32',
-          data: 'Vec<IdentityField>',
-          reviews: 'Vec<IdentityReview>',
-        },
-        VerifyMethod: {
-          _enum: ['Domain', 'Email', 'Evaluator', 'None'],
-        },
-        IdentityFieldInput: {
-          name: 'Text',
-          value: 'Text',
-          verify_method: 'VerifyMethod',
-        },
-        CurrencyId: 'Text',
-      };
-
-      registry.register(registeredTypes);
+      registry.register(KNOWN_TYPES);
 
       const identityCodec = registry.createType('Identity', {
         name: 'libra',
