@@ -13,7 +13,7 @@ export function decodeIdentityField(raw: IdentityFieldCodec): IdentityField {
     verifyMethod: VerifyMethod.Evaluator,
   };
 
-  if (!raw.is_verified.isEmpty) {
+  if (!raw.verify_by.isNone) {
     result.verifiedBy = raw.verify_by.unwrap().toString();
   }
 
@@ -23,7 +23,7 @@ export function decodeIdentityField(raw: IdentityFieldCodec): IdentityField {
 export function decodeIdentityReview(raw: IdentityReviewCodec): IdentityReview {
   return {
     reviewer: raw.reviewer.toString(),
-    digest: raw.content_digest.toString(),
+    digest: raw.digest.toString(),
   };
 }
 
@@ -32,7 +32,7 @@ export function decodeIdentity(raw: IdentityCodec, meta: DecodeFnMeta): Identity
     address: meta.key || '',
     name: raw.name.toString(),
     type: IdentityType.Individual,
-    credibility: raw.credibility.toBigInt(),
+    credibility: Number.parseInt(raw.credibility.toString()),
     data: raw.data.isEmpty ? [] : raw.data.toArray().map((field) => decodeIdentityField(field)),
     reviews: raw.reviews.isEmpty ? [] : raw.reviews.toArray().map((review) => decodeIdentityReview(review)),
   };

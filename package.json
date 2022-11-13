@@ -19,7 +19,8 @@
   "scripts": {
     "lint": "tsdx lint src",
     "fix:lint": "tsdx lint src --fix",
-    "test": "tsdx test",
+    "test": "tsdx test src",
+    "test:coverage": "tsdx test --coverage",
     "dev": "tsdx watch",
     "build": "tsdx build",
     "prepublishOnly": "tsdx build"
@@ -28,6 +29,8 @@
     "node": "^14.13.1 || >=16.0.0"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-import-assertions": "^7.20.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
     "@tsconfig/recommended": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",

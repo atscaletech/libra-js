@@ -49,7 +49,7 @@ export default class LrpProtocol {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
-        extrinsic: 'createPayments',
+        extrinsic: 'createPayment',
         params: {
           schema: createPaymentSchema,
           data,
@@ -63,7 +63,21 @@ export default class LrpProtocol {
     return this.client.submitTransaction(
       {
         pallet: PALLET_NAME,
-        extrinsic: 'acceptPayments',
+        extrinsic: 'acceptPayment',
+        params: {
+          schema: paymentHashSchema,
+          data: { hash },
+        },
+      },
+      account
+    );
+  }
+
+  rejectPayment(hash: string, account: Account): Promise<TransactionEvent> {
+    return this.client.submitTransaction(
+      {
+        pallet: PALLET_NAME,
+        extrinsic: 'rejectPayment',
         params: {
           schema: paymentHashSchema,
           data: { hash },

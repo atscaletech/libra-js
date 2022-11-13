@@ -20,9 +20,14 @@ export const createIdentitySchema: TransactionSchemaField[] = [
 
 export const updateIdentitySchema: TransactionSchemaField[] = [
   {
-    name: 'hash',
-    isRequired: true,
-    chainType: 'Hash',
+    name: 'name',
+    isRequired: false,
+    chainType: 'Vec<u8>',
+  },
+  {
+    name: 'data',
+    isRequired: false,
+    chainType: 'Vec<IdentityFieldInput>',
   },
 ];
 
@@ -33,7 +38,7 @@ export const verifyRequestSchema: TransactionSchemaField[] = [
     chainType: 'Vec<u64>',
   },
   {
-    name: 'account',
+    name: 'evaluator',
     isRequired: true,
     chainType: 'AccountId',
   },
@@ -48,6 +53,6 @@ export const verificationResultSchema: TransactionSchemaField[] = [
   {
     name: 'transcript',
     isRequired: true,
-    chainType: 'Vec<(u64, bool)',
+    chainType: 'Vec<(u64, bool)>',
   },
 ];

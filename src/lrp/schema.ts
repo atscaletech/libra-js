@@ -19,12 +19,12 @@ export const createPaymentSchema: TransactionSchemaField[] = [
   {
     name: 'description',
     isRequired: true,
-    chainType: 'Vec<u8',
+    chainType: 'Text',
   },
   {
     name: 'receipt',
     isRequired: true,
-    chainType: 'Vec<u8>',
+    chainType: 'Text',
   },
 ];
 

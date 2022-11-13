@@ -24,7 +24,7 @@ export interface IdentityField extends Struct {
 
 export interface IdentityReview extends Struct {
   readonly reviewer: AccountId;
-  readonly content_digest: Hash;
+  readonly digest: Hash;
 }
 
 export interface Identity extends Struct {

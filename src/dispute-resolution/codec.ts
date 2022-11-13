@@ -5,11 +5,11 @@ export function decodeDispute(raw: DisputeCodec): Dispute {
   return {
     paymentHash: raw.payment_hash.toString(),
     status: DisputeStatus.Evaluating,
-    expiredAt: raw.expired_at.toBigInt(),
+    expiredAt: raw.expired_at.toString(),
     arguments: [],
     resolvers: [],
     fee: raw.fee.toString(),
     judgments: [],
-    outcome: DisputeJudgment.ReleaseFundToPayee,
+    outcome: raw.outcome.isReleaseFundToPayer ? DisputeJudgment.ReleaseFundToPayer : DisputeJudgment.ReleaseFundToPayee,
   };
 }
