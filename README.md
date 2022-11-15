@@ -1,4 +1,4 @@
-# Libra Javascript SDK Monorepo
+# Libra Javascript SDK
 This is monorepo for Libra's Javascript SDK that can help developer easy to integrate web application with Libra payment in minutes.
 
 ## Development
@@ -12,19 +12,19 @@ cd libra-js
 yarn
 ```
 
-**Add package**
+## Run tests
 
 ```bash
-yarn create-package [package-name]
+yarn tests
 ```
 
-**Test**
+## Test with coverage
 
 ```bash
-yarn test
+yarn test:coverage
 ```
 
-**Build**
+## Build
 
 ```bash
 yarn build
