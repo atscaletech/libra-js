@@ -20,7 +20,7 @@ import { isFunction } from '@polkadot/util';
 import { getQueryKeys, decodeKeys, encodeParams } from './utils';
 import { SubmittableExtrinsic } from '@polkadot/api/types';
 
-let clients: Record<string, ApiRx>;
+let clients: Record<string, ApiRx> = {};
 
 export function createConnection(rpc: string): ApiRx {
   if (!clients[rpc]) {

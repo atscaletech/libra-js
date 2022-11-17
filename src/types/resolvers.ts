@@ -1,9 +1,9 @@
 import { AccountAddress, Balance, Timestamp } from './common';
 
 export enum ResolverStatus {
-  Candidacy,
-  Active,
-  Terminated,
+  Candidacy = 'Candidacy',
+  Active = 'Active',
+  Terminated = 'Terminated',
 }
 
 export interface Delegation {

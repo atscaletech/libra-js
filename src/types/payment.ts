@@ -1,14 +1,14 @@
 import type { AccountAddress, Balance, Hash, Timestamp } from './common';
 
 export enum PaymentStatus {
-  Pending,
-  Accepted,
-  Rejected,
-  Expired,
-  Fulfilled,
-  Disputed,
-  Cancelled,
-  Completed,
+  Pending = 'Pending',
+  Accepted = 'Accepted',
+  Rejected = 'Rejected',
+  Expired = 'Expired',
+  Fulfilled = 'Fulfilled',
+  Disputed = 'Disputed',
+  Cancelled = 'Cancelled',
+  Completed = 'Completed',
 }
 
 export interface Payment {
