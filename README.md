@@ -1,5 +1,5 @@
 # Libra Javascript SDK
-This is monorepo for Libra's Javascript SDK that can help developer easy to integrate web application with Libra payment in minutes.
+Libra's Javascript SDK that can help developer easy to integrate web application with Libra payment in minutes.
 
 ## Development
 
