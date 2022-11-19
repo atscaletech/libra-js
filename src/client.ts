@@ -15,12 +15,12 @@ import {
   QueryByKeysFromConfig,
   Account,
 } from './types';
-import { lastValueFrom, filter, map } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 import { isFunction } from '@polkadot/util';
 import { getQueryKeys, decodeKeys, encodeParams } from './utils';
 import { SubmittableExtrinsic } from '@polkadot/api/types';
 
-let clients: Record<string, ApiRx> = {};
+const clients: Record<string, ApiRx> = {};
 
 export function createConnection(rpc: string): ApiRx {
   if (!clients[rpc]) {
@@ -63,24 +63,24 @@ export class Client {
 
   async submitTransaction(config: TransactionConfig, account: Account): Promise<TransactionEvent> {
     await this.connection.isReady;
-
-    if (account.signer) {
-      this.connection.setSigner(account.signer);
-    }
     const transaction = this.buildTransaction(config);
-    const observable = transaction.signAndSend(account.address);
+    const observable = transaction.signAndSend(account.address, { signer: account.signer });
 
-    const isInBlock = (payload: ISubmittableResult) => payload.status.isInBlock;
-
-    return lastValueFrom(
-      observable.pipe(
-        filter(isInBlock),
-        map(({ status }) => ({
-          hash: status.asInBlock.toString(),
-          status: TransactionStatus.Processing,
-        }))
-      )
-    );
+    return new Promise((resolve, reject) => {
+      observable.subscribe({
+        next: ({ status, txHash, events }) => {
+          if (status.isInBlock) {
+            resolve({
+              hash: txHash.toString(),
+              status: TransactionStatus.Processing,
+              payload: events.map((item) => item.toHuman()),
+            });
+            return;
+          }
+        },
+        error: (err) => reject(err),
+      });
+    });
   }
 
   async query<C, T>(config: QueryConfig<C, T>): Promise<T | null> {

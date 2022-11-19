@@ -23,7 +23,12 @@ jest.mock('@polkadot/api', () => {
     ApiRx: jest.fn(() => {
       const balancesExtrinsic = {
         transfer: () => ({
-          signAndSend: () => of({ events: [], status: { isInBlock: true, asInBlock: { toString: () => 'hash' } } }),
+          signAndSend: () =>
+            of({
+              events: [],
+              status: { isInBlock: true, asInBlock: { toString: () => 'hash' } },
+              txHash: { toString: () => 'hash' },
+            }),
         }),
       };
 

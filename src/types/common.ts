@@ -23,4 +23,5 @@ export interface TransactionEvent {
   hash: string;
   status: TransactionStatus;
   payload?: any;
+  subscribe?: any;
 }

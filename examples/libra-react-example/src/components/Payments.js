@@ -25,8 +25,11 @@ export default function Payments({ libra, account }) {
     setIsSubmitting(true);
 
     try {
-      const { hash } = await libra.lrp.createPayment(paymentForm, account);
-      toaster.success(`😞 Success: Payment is create at tx hash: ${hash}`);
+      const { hash, onCompleted } = await libra.lrp.createPayment(paymentForm, account);
+      toaster.success(`Processing: Payment is process with tx hash: ${hash}`);
+
+      await onCompleted;
+      toaster.success(`Success: Payment is created successfully!`);
     } catch (e) {
       toaster.danger(`😞 Error: ${e.message}`);
     }

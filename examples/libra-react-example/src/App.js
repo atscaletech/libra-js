@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Libra } from 'libra-sdk';
+import { Libra } from '@libra/sdk';
 import routes from './routes';
 import { Button, Dialog } from 'evergreen-ui';
 import { useEffect, useState } from 'react';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Pane, Dialog } from 'evergreen-ui';
 
 import SelectExtension from './ExtensionSelect';
@@ -9,23 +9,16 @@ const Step = {
   SelectAccount: 'SelectAccount',
 };
 
-function AccountOption({ data }) {
-  return <Pane></Pane>;
-}
-
 export default function ConnectWallet({ libra, isShown, onAccountSelected }) {
   const [currentStep, setCurrentStep] = useState(Step.SelectExtension);
-  const [extensions, setExtensions] = useState([]);
   const [extensionName, setExtensionName] = useState(null);
   const [accounts, setAccounts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const onExtensionSelected = async ({ name }) => {
     setExtensionName(name);
     const result = await libra.walletConnection.getAccounts(name);
     setAccounts(result);
     setCurrentStep(Step.SelectAccount);
-    setIsLoading(false);
   };
 
   const handleAccountSelected = async (account) => {

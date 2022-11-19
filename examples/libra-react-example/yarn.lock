@@ -1534,6 +1534,13 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@libra/sdk@file:../..":
+  version "1.0.0"
+  dependencies:
+    "@polkadot/api" "^9.6.2"
+    "@polkadot/extension-dapp" "^0.44.6"
+    rxjs "^7.5.7"
+
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz#dbf733a965ca47b1973177dc0bb6c889edcfb129"
@@ -6653,13 +6660,6 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
-
-"libra-sdk@file:../..":
-  version "1.0.0"
-  dependencies:
-    "@polkadot/api" "^9.6.2"
-    "@polkadot/extension-dapp" "^0.44.6"
-    rxjs "^7.5.7"
 
 lilconfig@^2.0.3, lilconfig@^2.0.5, lilconfig@^2.0.6:
   version "2.0.6"
