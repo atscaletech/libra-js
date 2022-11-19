@@ -24,6 +24,7 @@ jest.mock('@polkadot/api', () => {
               isInBlock: true,
               asInBlock: { toString: () => SAMPLE_HASH },
             },
+            txHash: { toString: () => SAMPLE_HASH },
           }),
       });
 

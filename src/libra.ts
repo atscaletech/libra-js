@@ -17,7 +17,7 @@ export class Libra {
 
   constructor(config: LibraConfig) {
     const client = Client.connect(config);
-    this.walletConnection = new WalletConnection([]);
+    this.walletConnection = new WalletConnection(config.appName);
     this.lrp = new LrpProtocol(client);
     this.ddr = new DisputeResolution(client);
     this.identities = new Identities(client);

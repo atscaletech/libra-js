@@ -1,14 +1,14 @@
 import { AccountAddress, Balance, Timestamp } from './common';
 
 export enum DisputeStatus {
-  Finalizing,
-  Evaluating,
-  Resolved,
+  Finalizing = 'Finalizing',
+  Evaluating = 'Evaluating',
+  Resolved = 'Resolved',
 }
 
 export enum DisputeJudgment {
-  ReleaseFundToPayer,
-  ReleaseFundToPayee,
+  ReleaseFundToPayer = 'ReleaseFundToPayer',
+  ReleaseFundToPayee = 'ReleaseFundToPayee',
 }
 
 export interface Opinion {

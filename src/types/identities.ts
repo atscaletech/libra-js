@@ -1,13 +1,13 @@
 import { AccountAddress } from './common';
 
 export enum IdentityType {
-  Individual,
-  Organization,
+  Individual = 'Individual',
+  Organization = 'Organization',
 }
 
 export enum VerifyMethod {
-  Evaluator,
-  None,
+  Evaluator = 'Evaluator',
+  None = 'None',
 }
 
 export interface IdentityField {

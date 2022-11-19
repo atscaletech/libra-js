@@ -14,13 +14,14 @@ export interface Account {
 export type TransactionHash = string;
 
 export enum TransactionStatus {
-  Completed,
-  Processing,
-  Failed,
+  Completed = 'Completed',
+  Processing = 'Processing',
+  Failed = 'Failed',
 }
 
 export interface TransactionEvent {
   hash: string;
   status: TransactionStatus;
   payload?: any;
+  subscribe?: any;
 }
