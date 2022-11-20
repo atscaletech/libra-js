@@ -1,5 +1,5 @@
 {
-  "name": "@libra/sdk",
+  "name": "libra-sdk",
   "version": "1.0.0",
   "description": "Libra Javascript SDK",
   "license": "Apache-2.0",
