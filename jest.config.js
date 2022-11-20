@@ -3,4 +3,9 @@ module.exports = {
   transformIgnorePatterns: [
     "node_modules/?!@polkadot/*"
   ],
+  "collectCoverage": true,
+  "coverageReporters": [
+    "text",
+    "cobertura"
+  ]
 };

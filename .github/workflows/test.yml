@@ -3,7 +3,7 @@ name: Test
 on: push
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,4 +28,8 @@ jobs:
           yarn install
       - name: Run tests
         run: |
-          yarn test
+          yarn test 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          verbose: true
