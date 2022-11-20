@@ -16,6 +16,7 @@
 
 [![Lint](https://github.com/atscaletech/libra-js/actions/workflows/lint.yml/badge.svg)](https://github.com/atscaletech/libra-js/actions/workflows/lint.yml)
 [![Test](https://github.com/atscaletech/libra-js/actions/workflows/test.yml/badge.svg)](https://github.com/atscaletech/libra-js/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/atscaletech/libra-js/branch/main/graph/badge.svg?token=RITYVKTWVV)](https://codecov.io/gh/atscaletech/libra-js)
 
 </div>
 
