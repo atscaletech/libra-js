@@ -3,7 +3,7 @@ name: Test
 on: push
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,3 +33,4 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           verbose: true
+          files: ./coverage/coverage-final.json
