@@ -8,8 +8,8 @@
 <h3 align="center">Javascript SDK that can help developer easy to integrate web application with Libra payment in minutes.</h3>
 
 <p align="center">
-    <a href="https://thelibra.org"><b>Website</b></a> •
-    <a href="https://docs.thelibra.org"><b>Documentation</b></a>
+    <a href="https://golibra.xyz"><b>Website</b></a> •
+    <a href="https://docs.golibra.xyz"><b>Documentation</b></a>
 </p>
 
 <div align="center">
